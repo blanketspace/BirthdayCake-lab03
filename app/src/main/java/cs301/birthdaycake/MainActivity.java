@@ -27,4 +27,10 @@ public class MainActivity extends AppCompatActivity {
     public void goodbye(View button) {
         Log.i("Button", "Goodbye");
     }
+
+
+    /**public void switchButtonText(View button) {
+        Button b = findViewById(R.id.blowOut);
+        b.setText("light");
+    } */
 }

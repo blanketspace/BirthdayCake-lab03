@@ -2,6 +2,7 @@ package cs301.birthdaycake;
 
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.SeekBar;
 
@@ -11,19 +12,25 @@ public class CakeController implements View.OnClickListener, CompoundButton.OnCh
     private CakeModel cakeModel;
 
 
-public CakeController(CakeView cv) {
-    cakeView = cv;
-    cakeModel = cakeView.getCM();
-}
+    public CakeController(CakeView cv) {
+        cakeView = cv;
+        cakeModel = cakeView.getCM();
+    }
 
 
 
     @Override
     public void onClick(View view) {
-        this.cakeModel.lit = false;
+        if(view.getId()== R.id.blowOut) {
+            this.cakeModel.lit = false;
+            //TODO: make text on button switch so we can relight the candles
+        }
+        else if(view.getId() == R.id.goodbye) {
+            //TODO: close the program?
+        }
+
         cakeView.invalidate();
-        //TODO: make text on button switch so we can relight the candles
-    }
+    }// onClick
 
     @Override
     public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
