@@ -1,5 +1,6 @@
 package cs301.birthdaycake;
 
+import android.graphics.Paint;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -62,6 +63,21 @@ public class CakeController implements View.OnClickListener, CompoundButton.OnCh
         this.cakeModel.balloonX = (int) motionEvent.getX();
         this.cakeModel.balloonY = (int) motionEvent.getY();
         this.cakeModel.balloon = true;
+
+        int x = (int) motionEvent.getX();
+        int y = (int) motionEvent.getY();
+
+        CakeView real_view = (CakeView) view;
+
+        Paint red_paint = new Paint();
+        Paint green_paint = new Paint();
+
+        red_paint.setARGB(255,255,0,0);
+        green_paint.setARGB(255,0,255,0);
+
+        // Draw the checkerboard
+        real_view.setCheckerboard(x,y);
+
         cakeView.invalidate();
         return true;
     }
