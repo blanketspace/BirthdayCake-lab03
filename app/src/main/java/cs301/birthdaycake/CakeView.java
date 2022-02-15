@@ -17,6 +17,12 @@ public class CakeView extends SurfaceView {
     Paint outerFlamePaint = new Paint();
     Paint innerFlamePaint = new Paint();
     Paint wickPaint = new Paint();
+    Paint balloonPaint = new Paint();
+
+
+
+    Paint red = new Paint();
+
 
     // These are for the checkerboard coordinates
     private int x;
@@ -53,6 +59,8 @@ public class CakeView extends SurfaceView {
         setWillNotDraw(false);
 
         //Setup our palette
+        red.setColor(Color.RED);
+        red.setStyle(Paint.Style.FILL);
         cakePaint.setColor(0xFF3C52FF);  //blueee
         cakePaint.setStyle(Paint.Style.FILL);
         frostingPaint.setColor(0xFFFFFACD);  //pale yellow
@@ -65,8 +73,18 @@ public class CakeView extends SurfaceView {
         innerFlamePaint.setStyle(Paint.Style.FILL);
         wickPaint.setColor(Color.BLACK);
         wickPaint.setStyle(Paint.Style.FILL);
-
+        balloonPaint.setColor(0xFF4287f5);
+        balloonPaint.setStyle(Paint.Style.FILL);
         setBackgroundColor(Color.WHITE);  //better than black default
+
+    }
+
+    public void drawBalloon(Canvas canvas) {
+        canvas.drawOval(cakeModel.balloonX - 50, cakeModel.balloonY + 60, cakeModel.balloonX + 50,
+                cakeModel.balloonY - 60, balloonPaint);
+        canvas.drawLine(cakeModel.balloonX, cakeModel.balloonY + 60,cakeModel.balloonX + 30,
+                cakeModel.balloonY + 200, wickPaint);
+        //top/bottom are y, left/right are x
 
     }
 
@@ -165,7 +183,20 @@ public class CakeView extends SurfaceView {
         if (this.x != 0 || this.y != 0) {
             drawCheckerboard(x,y,canvas);
         }
+
+        String coords = "" + cakeModel.x + ", " + cakeModel.y;
+        red.setTextSize(70.0f);
+        canvas.drawText(coords, 1600.0f, 650.0f, red);
+
+
+        if (cakeModel.balloon) {
+            this.drawBalloon(canvas);
+        }
     }//onDraw
+
+    public void drawText(String string, float x,float y, Paint paint){
+
+    }
 
 }//class CakeView
 
