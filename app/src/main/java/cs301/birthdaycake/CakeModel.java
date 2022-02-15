@@ -11,6 +11,8 @@ public class CakeModel {
     public int balloonX;
     public int balloonY;
     public boolean balloon = false;
+    public float x = 0;
+    public float y = 0;
 
 
 
