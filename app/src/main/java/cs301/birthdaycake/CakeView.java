@@ -17,6 +17,8 @@ public class CakeView extends SurfaceView {
     Paint outerFlamePaint = new Paint();
     Paint innerFlamePaint = new Paint();
     Paint wickPaint = new Paint();
+    Paint balloonPaint = new Paint();
+
 
     /* These constants define the dimensions of the cake.  While defining constants for things
         like this is good practice, we could be calculating these better by detecting
@@ -61,8 +63,19 @@ public class CakeView extends SurfaceView {
         innerFlamePaint.setStyle(Paint.Style.FILL);
         wickPaint.setColor(Color.BLACK);
         wickPaint.setStyle(Paint.Style.FILL);
+        balloonPaint.setColor(0xFF4287f5);
+        balloonPaint.setStyle(Paint.Style.FILL);
 
         setBackgroundColor(Color.WHITE);  //better than black default
+
+    }
+
+    public void drawBalloon(Canvas canvas) {
+        canvas.drawOval(cakeModel.balloonX - 50, cakeModel.balloonY + 60, cakeModel.balloonX + 50,
+                cakeModel.balloonY - 60, balloonPaint);
+        canvas.drawLine(cakeModel.balloonX, cakeModel.balloonY + 60,cakeModel.balloonX + 30,
+                cakeModel.balloonY + 200, wickPaint);
+        //top/bottom are y, left/right are x
 
     }
 
@@ -135,6 +148,10 @@ public class CakeView extends SurfaceView {
                 //drawCandle(canvas, cakeLeft + 2 * cakeWidth/3 - candleWidth/2, cakeTop);
             }
             //divide cakeWidth by numCandles + 1, multiply cakeWidth by i, start i
+        }
+
+        if (cakeModel.balloon) {
+            this.drawBalloon(canvas);
         }
     }//onDraw
 
