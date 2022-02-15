@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.activity_main);
         CakeView theCake = findViewById(R.id.cakeView);
+        theCake.setOnTouchListener(new CheckerboardController());
         CakeController controller = new CakeController(theCake);
         Button b = findViewById(R.id.blowOut);
         b.setOnClickListener(controller);

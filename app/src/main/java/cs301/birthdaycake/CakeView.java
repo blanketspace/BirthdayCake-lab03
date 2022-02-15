@@ -18,6 +18,10 @@ public class CakeView extends SurfaceView {
     Paint innerFlamePaint = new Paint();
     Paint wickPaint = new Paint();
 
+    // These are for the checkerboard coordinates
+    private int x;
+    private int y;
+
     /* These constants define the dimensions of the cake.  While defining constants for things
         like this is good practice, we could be calculating these better by detecting
         and adapting to different tablets' screen sizes and resolutions.  I've deliberately
@@ -95,6 +99,27 @@ public class CakeView extends SurfaceView {
 
         }
 
+        // Called by onTouch method in CheckerboardController
+        public void setCheckerboard(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+
+        public void drawCheckerboard(int x, int y, Canvas canvas) {
+
+            Paint red_paint = new Paint();
+            Paint green_paint = new Paint();
+
+            red_paint.setARGB(255,255,0,0);
+            green_paint.setARGB(255,0,255,0);
+
+            // I know it's repetitive, but I didn't think it deserved a loop
+            canvas.drawRect(x-50,y-50,x,y,red_paint); // Top left
+            canvas.drawRect(x-50,y,x,y+50,green_paint); // Top right
+            canvas.drawRect(x,y-50,x+50,y,green_paint); // Bottom left
+            canvas.drawRect(x,y,x+50,y+50,red_paint); // Bottom right
+        }
+
     /**
      * onDraw is like "paint" in a regular Java program.  While a Canvas is
      * conceptually similar to a Graphics in javax.swing, the implementation has
@@ -135,6 +160,10 @@ public class CakeView extends SurfaceView {
                 //drawCandle(canvas, cakeLeft + 2 * cakeWidth/3 - candleWidth/2, cakeTop);
             }
             //divide cakeWidth by numCandles + 1, multiply cakeWidth by i, start i
+        }
+
+        if (this.x != 0 || this.y != 0) {
+            drawCheckerboard(x,y,canvas);
         }
     }//onDraw
 
