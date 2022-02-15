@@ -55,6 +55,8 @@ public class CakeView extends SurfaceView {
         setWillNotDraw(false);
 
         //Setup our palette
+        red.setColor(Color.RED);
+        red.setStyle(Paint.Style.FILL);
         cakePaint.setColor(0xFF3C52FF);  //blueee
         cakePaint.setStyle(Paint.Style.FILL);
         frostingPaint.setColor(0xFFFFFACD);  //pale yellow
@@ -155,7 +157,7 @@ public class CakeView extends SurfaceView {
 
         String coords = "" + cakeModel.x + ", " + cakeModel.y;
         red.setTextSize(70.0f);
-        canvas.drawText(coords, 1700.0f, 1100.0f, red);
+        canvas.drawText(coords, 1600.0f, 650.0f, red);
 
 
         if (cakeModel.balloon) {
